@@ -1,0 +1,24 @@
+*{
+    color: white;
+}
+.notes_input{
+    border:1px solid white;
+    /* padding:10px 20px; */
+    border-radius: 10px;
+}
+.title_input,.description_input{
+    outline: none;
+    border:none;
+    font-size:20px;
+    background-color: transparent;
+}
+.disp_notes_container{
+    box-shadow: 0px 0px 5px gray;
+    border-radius: 10px;
+    padding:5px 10px;
+    overflow-wrap: break-word;
+}
+.footer{
+    position:absolute;
+    bottom:0px;
+}

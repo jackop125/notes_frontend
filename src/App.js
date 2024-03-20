@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState,useEffect } from "react";
+import DisplayNotes from "./components/DisplayNotes";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import NotesArea from "./components/NotesArea";
 
 function App() {
+  const [notes,setNotes] = useState([]);
+  useEffect(()=>{
+    (async()=>{
+      const resultData = await fetch("https://notes-api-navy.vercel.app/notes");
+      const data = await resultData.json();
+    console.log(data);
+    setNotes(data)
+    })();
+  },[])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <NotesArea />
+      <hr />
+      <div className="container-fluid">
+        <div className="row d-flex justify-content-center">
+          {
+            notes.map((note)=><DisplayNotes title={note.title} desc={note.description} key={note._id} id={note._id}/>)
+          }
+          {/* <DisplayNotes title={notes.title} desc={notes.description}/> */}
+         
+        </div>
+      </div>
+      {/* <Footer/> */}
+    </>
   );
 }
 
