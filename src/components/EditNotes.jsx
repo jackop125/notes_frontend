@@ -100,10 +100,38 @@ const EditNotes = (props) => {
                 type="button"
                 className="btn btn-secondary"
                 data-bs-dismiss="modal"
+                onClick={()=>{
+                  setNote((prevData=>{
+                    return{
+                      title:props.title,
+                      description:props.desc,
+                      id:props.id
+                  }
+                  }))
+                }}
               >
                 Close
               </button>
-              <button type="button" className="btn btn-primary">
+              <button type="button" className="btn btn-primary" onClick={()=>{
+                (async()=>{
+                  let data = JSON.stringify({
+                    title:Note.title,
+                    description:Note.description
+                  })
+                  let result = await fetch(`https://notes-api-navy.vercel.app/notes/${Note.id}`,{
+                    method:"PATCH",
+                    body:data,
+                    headers:{
+                      "Content-Type":"application/json"
+                    }
+                  })
+                  if(result.status === 200 && result.ok === true){
+                    alert("UPDATED");
+                  }
+                  console.log(await result);
+                  props.getDATA();
+                })();
+              }}>
                 Save changes
               </button>
             </div>
