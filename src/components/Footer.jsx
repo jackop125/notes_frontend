@@ -2,7 +2,7 @@ const Footer = () => {
   return (
     <div className="footer container-fluid bg-secondary">
       <div className="row p-2">
-        <a href="" className="text-white text-decoration-none text-center">
+        <a href="https://github.com/jackop125" className="text-white text-decoration-none text-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="30"
